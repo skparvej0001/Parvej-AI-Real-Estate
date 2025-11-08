@@ -34,6 +34,129 @@ st.set_page_config(page_title="🦾 AI Real Estate Assistant", page_icon='💬',
 st.header('Chat with Real Estate AI Assistant')  # Main heading
 st.write('[![view source code ](https://img.shields.io/badge/view_source_code-gray?logo=github)](https://github.com/AleksNeStu/ai-real-estate-assistant)')  # GitHub link
 
+# Add theme-aware CSS for better visibility in both dark and light modes
+st.markdown("""
+    <style>
+    /* Theme-aware styling for dark and light modes */
+    :root {
+        --text-color-light: #000000;
+        --text-color-dark: #FAFAFA;
+        --bg-color-light: #FFFFFF;
+        --bg-color-dark: #0E1117;
+        --border-color-light: #E0E0E0;
+        --border-color-dark: #333333;
+        --input-bg-light: #FFFFFF;
+        --input-bg-dark: #262730;
+    }
+
+    /* Light mode styles (default) */
+    [data-testid="stAppViewContainer"] {
+        color: var(--text-color-light);
+    }
+
+    /* Dark mode styles */
+    [data-theme="dark"] [data-testid="stAppViewContainer"] {
+        color: var(--text-color-dark) !important;
+    }
+
+    /* Ensure text areas have proper contrast */
+    [data-baseweb="textarea"] textarea {
+        color: inherit !important;
+        background-color: var(--input-bg-light) !important;
+    }
+
+    [data-theme="dark"] [data-baseweb="textarea"] textarea {
+        background-color: var(--input-bg-dark) !important;
+        color: var(--text-color-dark) !important;
+        border-color: var(--border-color-dark) !important;
+    }
+
+    /* Ensure input fields have proper contrast */
+    [data-baseweb="input"] input {
+        color: inherit !important;
+    }
+
+    [data-theme="dark"] [data-baseweb="input"] input {
+        color: var(--text-color-dark) !important;
+        background-color: var(--input-bg-dark) !important;
+        border-color: var(--border-color-dark) !important;
+    }
+
+    /* Chat messages visibility */
+    [data-theme="dark"] .stChatMessage {
+        background-color: var(--input-bg-dark) !important;
+    }
+
+    [data-theme="dark"] .stChatMessage p,
+    [data-theme="dark"] .stChatMessage div,
+    [data-theme="dark"] .stChatMessage span {
+        color: var(--text-color-dark) !important;
+    }
+
+    /* Popover content visibility */
+    [data-theme="dark"] [data-baseweb="popover"] {
+        background-color: var(--input-bg-dark) !important;
+        border-color: var(--border-color-dark) !important;
+    }
+
+    [data-theme="dark"] [data-baseweb="popover"] * {
+        color: var(--text-color-dark) !important;
+    }
+
+    /* Sidebar elements */
+    [data-theme="dark"] [data-testid="stSidebar"] * {
+        color: var(--text-color-dark) !important;
+    }
+
+    [data-theme="dark"] [data-testid="stSidebar"] [data-baseweb="textarea"] textarea,
+    [data-theme="dark"] [data-testid="stSidebar"] [data-baseweb="input"] input {
+        background-color: var(--input-bg-dark) !important;
+        color: var(--text-color-dark) !important;
+        border-color: var(--border-color-dark) !important;
+    }
+
+    /* Radio button labels */
+    [data-theme="dark"] [data-baseweb="radio"] label {
+        color: var(--text-color-dark) !important;
+    }
+
+    /* Info messages */
+    [data-theme="dark"] .stAlert {
+        color: var(--text-color-dark) !important;
+    }
+
+    /* Button contrast */
+    .stButton button {
+        color: inherit !important;
+    }
+
+    /* Chat input */
+    [data-theme="dark"] [data-testid="stChatInput"] textarea {
+        background-color: var(--input-bg-dark) !important;
+        color: var(--text-color-dark) !important;
+        border-color: var(--border-color-dark) !important;
+    }
+
+    /* Ensure headers are visible */
+    [data-theme="dark"] h1,
+    [data-theme="dark"] h2,
+    [data-theme="dark"] h3,
+    [data-theme="dark"] h4,
+    [data-theme="dark"] h5,
+    [data-theme="dark"] h6 {
+        color: var(--text-color-dark) !important;
+    }
+
+    /* Labels and general text visibility */
+    [data-theme="dark"] label,
+    [data-theme="dark"] .stMarkdown,
+    [data-theme="dark"] p,
+    [data-theme="dark"] span {
+        color: var(--text-color-dark) !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 class ChatbotWeb:
     """
     Main class that implements the RAG-based chatbot for real estate data.

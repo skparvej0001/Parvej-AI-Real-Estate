@@ -246,6 +246,72 @@ st.title('🦾 AI Real Estate Assistant')
 
 st.markdown("""
     <style>
+    /* Theme-aware styling for dark and light modes */
+    :root {
+        --text-color-light: #000000;
+        --text-color-dark: #FAFAFA;
+        --bg-color-light: #FFFFFF;
+        --bg-color-dark: #0E1117;
+        --border-color-light: #E0E0E0;
+        --border-color-dark: #333333;
+        --input-bg-light: #FFFFFF;
+        --input-bg-dark: #262730;
+    }
+
+    /* Light mode styles (default) */
+    [data-testid="stAppViewContainer"] {
+        color: var(--text-color-light);
+    }
+
+    /* Dark mode styles */
+    [data-theme="dark"] [data-testid="stAppViewContainer"],
+    [data-baseweb="base-input"],
+    [data-baseweb="textarea"] {
+        color: var(--text-color-dark) !important;
+    }
+
+    /* Ensure text areas have proper contrast */
+    [data-baseweb="textarea"] textarea {
+        color: inherit !important;
+        background-color: var(--input-bg-light) !important;
+    }
+
+    [data-theme="dark"] [data-baseweb="textarea"] textarea {
+        background-color: var(--input-bg-dark) !important;
+        color: var(--text-color-dark) !important;
+        border-color: var(--border-color-dark) !important;
+    }
+
+    /* Ensure input fields have proper contrast */
+    [data-baseweb="input"] input {
+        color: inherit !important;
+    }
+
+    [data-theme="dark"] [data-baseweb="input"] input {
+        color: var(--text-color-dark) !important;
+        background-color: var(--input-bg-dark) !important;
+        border-color: var(--border-color-dark) !important;
+    }
+
+    /* Disabled text areas (conversation history) */
+    [data-baseweb="textarea"][disabled] textarea,
+    textarea:disabled {
+        opacity: 1 !important;
+        color: inherit !important;
+    }
+
+    [data-theme="dark"] [data-baseweb="textarea"][disabled] textarea,
+    [data-theme="dark"] textarea:disabled {
+        color: var(--text-color-dark) !important;
+        background-color: var(--input-bg-dark) !important;
+    }
+
+    /* Button contrast */
+    .stButton button {
+        color: inherit !important;
+    }
+
+    /* Form containers */
     .full-width-form {
         width: 100%;
     }
@@ -274,8 +340,27 @@ st.markdown("""
         flex: 1;
     }
     .conversation-container {
-        max-height: 90vh; /* Adjust to fill more of the screen */
+        max-height: 90vh;
         overflow-y: auto;
+    }
+
+    /* Labels and text visibility */
+    [data-theme="dark"] label,
+    [data-theme="dark"] .stMarkdown,
+    [data-theme="dark"] p,
+    [data-theme="dark"] span {
+        color: var(--text-color-dark) !important;
+    }
+
+    /* Number input */
+    [data-theme="dark"] [data-baseweb="input"] input[type="number"] {
+        color: var(--text-color-dark) !important;
+        background-color: var(--input-bg-dark) !important;
+    }
+
+    /* Ensure all text in columns is visible */
+    [data-theme="dark"] [data-testid="column"] * {
+        color: var(--text-color-dark) !important;
     }
     </style>
 """, unsafe_allow_html=True)
