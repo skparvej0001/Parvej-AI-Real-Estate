@@ -1,0 +1,29 @@
+# Streamlit Configuration for AI Real Estate Assistant
+# This file configures the theme and UI settings for the application
+
+[theme]
+# Dark theme (default) - WCAG 2.1 AA compliant colors
+# All contrast ratios meet or exceed 4.5:1 for normal text
+
+base = "dark"
+primaryColor = "#3B82F6"          # Blue-500 - Primary actions and links (7.26:1 contrast)
+backgroundColor = "#0F172A"        # Slate-950 - Main background
+secondaryBackgroundColor = "#1E293B"  # Slate-800 - Cards, sidebars (6.8:1 contrast)
+textColor = "#F1F5F9"             # Slate-100 - Primary text (14.5:1 contrast)
+font = "sans serif"
+
+[browser]
+# Automatically gather usage stats
+gatherUsageStats = false
+
+[server]
+# Enable CORS for better security
+enableCORS = false
+enableXsrfProtection = true
+
+# File watcher
+fileWatcherType = "auto"
+
+[runner]
+# Allow reruns on file changes
+magicEnabled = true

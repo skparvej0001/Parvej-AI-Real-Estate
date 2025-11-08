@@ -3,7 +3,16 @@
 ## Overview
 The AI Real Estate Assistant is a conversational AI application designed to help real estate agencies assist potential buyers and renters in finding their ideal properties. The application uses natural language processing and machine learning to understand user preferences and recommend suitable properties from a database.
 
-For detailed project requirements and specifications, see the [Product Requirements Document](PRD.MD).
+For detailed project requirements and specifications, see the [Product Requirements Document](docs/PRD.md).
+
+## ✨ Latest Updates
+
+### UI Modernization & Dark Mode (v2.1)
+- **🌓 Dark Mode Support**: Professional dark theme with automatic system preference detection
+- **🎨 WCAG 2.1 AA Compliance**: All text elements meet or exceed 4.5:1 contrast ratios
+- **📱 Responsive Design**: Optimized for mobile, tablet, and desktop devices
+- **♿ Accessibility**: Full keyboard navigation and screen reader support
+- **🎭 Theme Toggle**: Manual override with persistent preference storage
 
 ## Solution Architecture & Design Decisions
 
@@ -41,7 +50,9 @@ The AI Real Estate Assistant implements a Retrieval-Augmented Generation (RAG) s
 - **Property Search & Filtering**: Search properties based on location, budget, type, features, and more
 - **Multiple Data Sources**: Support for local CSV files and external data sources via URLs
 - **Flexible LLM Integration**: Support for OpenAI GPT models and open-source alternatives
-- **Responsive Web Interface**: Easy-to-use Streamlit-based user interface
+- **Modern Dark Mode UI**: WCAG 2.1 AA compliant theming with system preference detection
+- **Responsive Web Interface**: Easy-to-use Streamlit-based user interface optimized for all devices
+- **Accessibility First**: Full keyboard navigation, screen reader support, and high contrast modes
 
 ## Strengths & Limitations
 
@@ -69,22 +80,46 @@ The AI Real Estate Assistant implements a Retrieval-Augmented Generation (RAG) s
 
 ## Project Structure
 ```
-├── ai/                    # AI agent implementation
-├── app.py                 # V1 application
-├── app_v2.py              # V2 application
-├── assets/                # Screenshots and images
-├── common/                # Common configurations
-├── data/                  # Data loading modules
-├── dataset/               # Sample datasets
-├── pyproject.toml         # Poetry dependencies
-├── README.md              # This file
-├── PRD.MD                 # Product Requirements Document
-├── run_v1.sh              # Script to run V1
-├── run_v2.sh              # Script to run V2
-├── streaming.py           # Streaming utilities
-├── TODO.MD                # Todo list
-├── utils/                 # Utility scripts
-└── utils.py               # Helper functions
+ai-real-estate-assistant/
+├── src/                       # Source code
+│   ├── ai/                   # AI agent implementation
+│   │   ├── __init__.py
+│   │   └── agent.py          # RealEstateGPT class
+│   ├── common/               # Shared configuration
+│   │   ├── __init__.py
+│   │   └── cfg.py            # Configuration constants
+│   ├── data/                 # Data loading modules
+│   │   ├── __init__.py
+│   │   └── csv_loader.py     # CSV utilities
+│   ├── ui/                   # UI components and styling
+│   │   ├── __init__.py
+│   │   ├── theme_manager.py  # Dark mode theme management
+│   │   └── styles.css        # WCAG-compliant CSS
+│   └── utils/                # Utility functions
+│       ├── __init__.py
+│       ├── utils.py          # General utilities
+│       └── streaming.py      # Streaming handlers
+├── config/                   # Configuration files
+│   └── streamlit/           # Streamlit config
+│       └── config.toml      # Theme and app settings
+├── docs/                     # Documentation
+│   ├── images/              # Screenshots and diagrams
+│   ├── PRD.md               # Product Requirements
+│   └── TODO.md              # Project roadmap
+├── dataset/                  # Sample datasets
+│   └── pl/                  # Polish real estate data
+├── scripts/                  # Utility scripts
+│   ├── run_v1.sh            # Run V1 app
+│   └── run_v2.sh            # Run V2 app
+├── tests/                    # Test suite
+├── app.py                    # V1 application entry
+├── app_v2.py                 # V2 application entry (RAG)
+├── pyproject.toml           # Poetry configuration
+├── .gitignore               # Git ignore rules
+├── README.md                # This file
+├── CONTRIBUTING.md          # Contribution guidelines
+├── CODE_OF_CONDUCT.md       # Code of conduct
+└── DEVELOPMENT.md           # Development guide
 ```
 
 ## Project Versions
@@ -94,7 +129,7 @@ The AI Real Estate Assistant implements a Retrieval-Augmented Generation (RAG) s
 - Basic property search functionality with single-turn conversations
 - Run with: [run_v1.sh](run_v1.sh) | Application file: [app.py](app.py)
 
-![V1 Screenshot](assets/screen.png)
+![V1 Screenshot](docs/images/screen.png)
 
 ### V2: RAG with Multiple LLM Support
 - Uses different LLM models (OpenAI GPT, Llama)
@@ -102,7 +137,7 @@ The AI Real Estate Assistant implements a Retrieval-Augmented Generation (RAG) s
 - Enhanced property search and filtering capabilities
 - Run with: [run_v2.sh](run_v2.sh) | Application file: [app_v2.py](app_v2.py)
 
-![V2 Screenshot](assets/screen2.png)
+![V2 Screenshot](docs/images/screen2.png)
 
 ## Future Development Roadmap
 
@@ -314,32 +349,32 @@ source .venv/bin/activate
 ```
 
 #### 4. Set up environment variables
-Create a `.env` file in the project root with the following contents:
+Create a `.streamlit/secrets.toml` file in the project root:
+```toml
+OPENAI_API_KEY = "your-api-key-here"
 ```
-OPENAI_API_KEY=your-api-key-here
-```
+
+**Note**: Never commit this file to version control! It's already in `.gitignore`.
 
 ### Running the Application
 
 #### Local Development
 Run either version of the application:
 ```sh
-# Run V1
+# Run V1 (Dataframe Agent)
 streamlit run app.py
-# OR
-./run_v1.sh
+# OR use the script
+./scripts/run_v1.sh
 
-# Run V2
+# Run V2 (RAG Implementation)
 streamlit run app_v2.py
-# OR
-./run_v2.sh
+# OR use the script
+./scripts/run_v2.sh
 ```
 
-For additional configuration options:
-```sh
-# Local run with custom settings
-./utils/run_local.sh
-```
+The application will automatically detect your system theme preference and apply the appropriate dark/light mode. You can manually toggle themes using the sidebar control.
+
+For detailed development instructions, see [DEVELOPMENT.md](DEVELOPMENT.md).
 
 ### Deployment
 
@@ -359,7 +394,22 @@ This application can be deployed to Streamlit Cloud. For details, see the [Strea
 ```
 
 ## Contributing
-Contributions are welcome! Please feel free to submit a Pull Request.
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+- Setting up your development environment
+- Coding standards and best practices
+- Pull request process
+- Testing guidelines
+
+Please also read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
+
+## Documentation
+
+- **[Product Requirements](docs/PRD.md)** - Detailed project specifications
+- **[Development Guide](DEVELOPMENT.md)** - Setup and development workflow
+- **[Contributing Guidelines](CONTRIBUTING.md)** - How to contribute
+- **[Code of Conduct](CODE_OF_CONDUCT.md)** - Community guidelines
+- **[Project Roadmap](docs/TODO.md)** - Future plans and todos
 
 ## License
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.

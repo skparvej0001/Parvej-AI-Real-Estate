@@ -13,13 +13,14 @@ Unlike V1 which uses a pandas dataframe agent, this version:
 """
 
 import os  # For path operations and environment variables
-import utils  # Custom utilities for the application
+from src.utils import utils  # Custom utilities for the application
 import requests  # For HTTP requests to load external data
 import traceback  # For detailed error tracking
 import validators  # For validating URLs
 import streamlit as st  # Web UI framework
-from streaming import StreamHandler  # Custom handler for streaming responses
-from common.cfg import *  # Import configuration variables
+from src.utils.streaming import StreamHandler  # Custom handler for streaming responses
+from src.common.cfg import *  # Import configuration variables
+from src.ui.theme_manager import setup_theme  # Import theme manager
 from langchain.memory import ConversationBufferMemory  # For storing conversation context
 from langchain.chains import ConversationalRetrievalChain  # Main RAG chain
 import pandas as pd  # For data manipulation
@@ -31,7 +32,13 @@ from langchain_community.vectorstores import DocArrayInMemorySearch  # In-memory
 
 # Configure the Streamlit page
 st.set_page_config(page_title="🦾 AI Real Estate Assistant", page_icon='💬', layout='wide')
-st.header('Chat with Real Estate AI Assistant')  # Main heading
+
+# Initialize modern theme system with dark mode support
+theme_manager = setup_theme()
+
+# Header
+st.header('🦾 Chat with Real Estate AI Assistant')
+st.markdown("**Version 2.0** - RAG Implementation with Vector Database")
 st.write('[![view source code ](https://img.shields.io/badge/view_source_code-gray?logo=github)](https://github.com/AleksNeStu/ai-real-estate-assistant)')  # GitHub link
 
 class ChatbotWeb:
@@ -249,7 +256,7 @@ class ChatbotWeb:
     def main(self):
         """
         Main method to run the Streamlit application.
-        
+
         This method:
         1. Sets up the UI for URL input
         2. Handles adding and clearing data sources
@@ -257,6 +264,12 @@ class ChatbotWeb:
         4. Manages the chat interface
         5. Processes user queries and displays responses with citations
         """
+        # Add theme toggle to sidebar
+        with st.sidebar:
+            st.markdown("---")
+            theme_manager.render_theme_toggle()
+            st.markdown("---")
+
         csv_url = 'CSV Data Set URL'  # Label for the URL input
         
         # Initialize session state for websites if not already set

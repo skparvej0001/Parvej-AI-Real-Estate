@@ -162,12 +162,39 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
-/.idea/
-/.github/
-/.github/
-tmp/
+# IDE
+.idea/
+.vscode/
+.history/
 *.pkl
-/.vscode/
-/.history/
-/.github/
-/.devcontainer/
+
+# Project specific
+tmp/
+.streamlit/secrets.toml
+
+# Vector databases and embeddings
+chroma_db/
+*.index
+*.faiss
+
+# Streamlit cache
+.streamlit/cache/
+
+# Datasets (uncomment if you don't want to version datasets)
+# dataset/
+# *.csv
+
+# Temporary assets
+assets/temp/
+
+# Documentation builds
+docs/_build/
+docs/.doctrees/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log

@@ -16,9 +16,10 @@ import io
 import requests
 from yarl import URL
 
-from ai.agent import RealEstateGPT  # Import the AI agent class
-from common.cfg import *  # Import configuration variables
-from data.csv_loader import DataLoaderCsv  # Import CSV loading utilities
+from src.ai.agent import RealEstateGPT  # Import the AI agent class
+from src.common.cfg import *  # Import configuration variables
+from src.data.csv_loader import DataLoaderCsv  # Import CSV loading utilities
+from src.ui.theme_manager import setup_theme  # Import theme manager
 
 # Configure the Streamlit page layout
 st.set_page_config(
@@ -26,6 +27,9 @@ st.set_page_config(
     page_icon='💬',
     layout='wide'  # Use the full width of the browser window
 )
+
+# Initialize modern theme system with dark mode support
+theme_manager = setup_theme()
 
 # Sample user messages for demonstration and testing purposes
 _MSG1 = (
@@ -243,42 +247,13 @@ if 'test_msg' not in st.session_state:
 
 # Set the application title
 st.title('🦾 AI Real Estate Assistant')
+st.markdown("**Version 1.0** - Powered by LangChain & OpenAI")
 
-st.markdown("""
-    <style>
-    .full-width-form {
-        width: 100%;
-    }
-    .full-width-form .stTextArea {
-        width: 100%;
-    }
-    .full-width-form .stButton {
-        width: 100%;
-    }
-    .form-container {
-        margin: 20px;
-    }
-    .api-key-container {
-        margin-top: 20px;
-    }
-    .button-container {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-    .form-container {
-        flex: 1;
-    }
-    .api-key-container {
-        flex: 1;
-    }
-    .conversation-container {
-        max-height: 90vh; /* Adjust to fill more of the screen */
-        overflow-y: auto;
-    }
-    </style>
-""", unsafe_allow_html=True)
+# Render theme toggle in sidebar
+with st.sidebar:
+    st.markdown("---")
+    theme_manager.render_theme_toggle()
+    st.markdown("---")
 
 # Create a two-column layout
 col1, col2 = st.columns([2, 2])  # Equal width for input and conversation columns
