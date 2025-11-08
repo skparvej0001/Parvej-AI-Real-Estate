@@ -1778,6 +1778,25 @@ def apply_theme():
                 color: #fafafa !important;
                 border-color: #3a3f4b !important;
             }
+            /* Input labels - critical for visibility */
+            .stTextInput label, .stSelectbox label, .stTextArea label,
+            .stNumberInput label, .stDateInput label, .stTimeInput label {
+                color: #fafafa !important;
+            }
+            /* Input placeholders */
+            .stTextInput input::placeholder, .stTextArea textarea::placeholder {
+                color: #8b8b8b !important;
+            }
+            /* Input focus states */
+            .stTextInput>div>div>input:focus, .stTextArea>div>div>textarea:focus {
+                border-color: #4a9eff !important;
+                box-shadow: 0 0 0 1px #4a9eff !important;
+            }
+            /* Password inputs */
+            .stTextInput input[type="password"] {
+                background-color: #262730 !important;
+                color: #fafafa !important;
+            }
             /* Buttons */
             .stButton>button {
                 background-color: #262730 !important;

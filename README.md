@@ -11,7 +11,7 @@
 
 The AI Real Estate Assistant is a conversational AI application that helps users find their ideal properties through natural language interaction. The modern version (V3) features intelligent query understanding, multi-provider AI model support, and sophisticated search capabilities.
 
-**[Live Demo](https://ai-real-estate-assistant.streamlit.app/)** | **[Documentation](PRD.MD)** | **[Modernization Proposal](MODERNIZATION_PROPOSAL.md)**
+**[Live Demo](https://ai-real-estate-assistant.streamlit.app/)** | **[Documentation](docs/PRD.MD)** | **[Modernization Proposal](docs/MODERNIZATION_PROPOSAL.md)**
 
 ---
 
@@ -77,7 +77,7 @@ docker-compose up -d
 # Visit: http://localhost:8501
 ```
 
-📚 **[Full Docker Guide →](DOCKER.md)**
+📚 **[Full Docker Guide →](docs/DOCKER.md)**
 
 ---
 
@@ -415,14 +415,21 @@ ai-real-estate-assistant/
 │   └── components/
 ├── dataset/                   # Sample property datasets
 │   └── pl/                    #     Polish apartment data
+├── docs/                      # 📚 Documentation
+│   ├── PRD.MD                 #     Product requirements
+│   ├── MODERNIZATION_PROPOSAL.md  # Modernization plan
+│   ├── PHASE2_README.md       #     Phase 2 details
+│   ├── PHASE3_README.md       #     Phase 3 details
+│   ├── PHASE4_README.md       #     Phase 4 details
+│   ├── PHASE5_README.md       #     Phase 5 details
+│   ├── DEPLOYMENT.md          #     Deployment guide
+│   ├── DOCKER.md              #     Docker setup
+│   ├── TESTING_GUIDE.md       #     Testing procedures
+│   └── TODO.MD                #     Development tasks
 ├── common/                    # Legacy configuration
 ├── ai/                        # Legacy agent (V1)
 ├── pyproject.toml             # Poetry dependencies
-├── README.md                  # This file
-├── PRD.MD                     # Product requirements
-├── MODERNIZATION_PROPOSAL.md  # 🆕 Modernization plan
-├── PHASE2_README.md           # 🆕 Phase 2 details
-└── TODO.MD                    # Development tasks
+└── README.md                  # This file
 ```
 
 ---
@@ -568,14 +575,14 @@ This application includes **5 complete phases** of development:
 
 ## 📚 Documentation
 
-- **[Docker Setup Guide](DOCKER.md)**: Complete Docker deployment guide
-- **[Streamlit Cloud Deployment](DEPLOYMENT.md)**: Cloud deployment instructions
-- **[Product Requirements](PRD.MD)**: Project specifications
-- **[Modernization Proposal](MODERNIZATION_PROPOSAL.md)**: V3 architecture
-- **[Phase 3 README](PHASE3_README.md)**: Advanced features docs
-- **[Phase 4 README](PHASE4_README.md)**: Visualization docs
-- **[Phase 5 README](PHASE5_README.md)**: Notification system docs
-- **[Testing Guide](TESTING_GUIDE.md)**: Comprehensive testing procedures
+- **[Docker Setup Guide](docs/DOCKER.md)**: Complete Docker deployment guide
+- **[Streamlit Cloud Deployment](docs/DEPLOYMENT.md)**: Cloud deployment instructions
+- **[Product Requirements](docs/PRD.MD)**: Project specifications
+- **[Modernization Proposal](docs/MODERNIZATION_PROPOSAL.md)**: V3 architecture
+- **[Phase 3 README](docs/PHASE3_README.md)**: Advanced features docs
+- **[Phase 4 README](docs/PHASE4_README.md)**: Visualization docs
+- **[Phase 5 README](docs/PHASE5_README.md)**: Notification system docs
+- **[Testing Guide](docs/TESTING_GUIDE.md)**: Comprehensive testing procedures
 
 ---
 
@@ -658,7 +665,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For questions or issues:
 - Create an [Issue](https://github.com/AleksNeStu/ai-real-estate-assistant/issues)
 - Check existing [Discussions](https://github.com/AleksNeStu/ai-real-estate-assistant/discussions)
-- Review the [PRD](PRD.MD) for detailed specifications
+- Review the [PRD](docs/PRD.MD) for detailed specifications
 
 ---
 
